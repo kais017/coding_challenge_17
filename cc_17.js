@@ -15,7 +15,7 @@ addPurchase(amount) { // method that adds purchase amount to puchaseHistory
 
 getTotalSpent() { // method that calculates, logs, and returns purchase total
     const total = this.purchaseHistory.reduce((sum,amount) => sum + amount, 0);
-    console.log(`${this.name} has spent $${total}`);
+    
     return total; 
   }
 }
@@ -74,7 +74,7 @@ class VIPCustomer extends Customer {
     }
 
     getTotalSpent() { // returns total spent with 10% loyalty bonus
-        const totalSpent = super.getTotalSpent();
+        const totalSpent = this.purchaseHistory.reduce((sum, amount) => sum + amount, 0);
         const bonus = totalSpent * 0.10;
         return totalSpent + bonus;
 
@@ -92,30 +92,36 @@ vip1.getTotalSpent();
 // task 4: Build a Client Report System
 
 // create more customers
-
+console.log("----More Customers added:----")
 const customer3 = new Customer ("kelly", "kelly@gmail.com");
 customer3.addPurchase(25);
 customer3.addPurchase(25);
+customer3.getTotalSpent();
 
 const vip2 = new VIPCustomer("amber", "amberr@gmail.com");
 vip2.addPurchase(600);
 vip2.addPurchase(150);
+vip2.getTotalSpent();
 
 const allCustomers = [customer1, customer2, vip1, vip2];  
 
 // calculate total revenue with .reduce
-console.log("total revenue:")
+console.log("----total revenue:----")
 const totalRevenue = allCustomers.reduce((total, customer) => total + customer.getTotalSpent(), 0);  
+console.log(`Total Revenue: $${totalRevenue}`);
 
-console.log("high spending customers:")
+console.log("----high spending customers:----")
 const highSpendingCustomers = allCustomers.filter(customer => {
     const totalSpent = customer.getTotalSpent();
     return totalSpent > 500;  // filter customers who spent over $500
 });
+console.log(highSpendingCustomers);
+
 // filter all customers that spent over $500
 
 // map summary of customer names and total
-console.log("customer summary:")
+console.log("----customer summary:----")
+console.log("All customers:", allCustomers);
 const customerSummary = allCustomers.map(customer => {
     return {
       name: customer.name,

@@ -66,6 +66,29 @@ customer2.getTotalSpent();
 
 salesRep1.getClientTotal("Anna"); // example of a client name not found
 
+// task 3:  Create a VIPCustomer Class (extends Customer)
+class VIPCustomer extends Customer {
+    constructor(name, email, vipLevel) {
+        super(name, email); // calls parent class constructor
+        this.vipLevel = vipLevel
+    }
+
+    getTotalSpent() { // returns total spent with 10% loyalty bonus
+        const totalSpent = super.getTotalSpent();
+        const bonus = totalSpent * 0.10;
+        const totalBonus = totalSpent + bonus;
+        return totalBonus;
+
+    }
+}
+
+// example VIP customer
+console.log("----VIP CUSTOMER----")
+const vip1 = new VIPCustomer ("Eve", "atomeve@gmail.com", "Gold");
+vip1.addPurchase(150);
+vip1.addPurchase(55);
+vip1.getTotalSpent();
+
 
 
 

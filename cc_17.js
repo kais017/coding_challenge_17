@@ -76,8 +76,7 @@ class VIPCustomer extends Customer {
     getTotalSpent() { // returns total spent with 10% loyalty bonus
         const totalSpent = super.getTotalSpent();
         const bonus = totalSpent * 0.10;
-        const totalBonus = totalSpent + bonus;
-        return totalBonus;
+        return totalSpent + bonus;
 
     }
 }
@@ -88,6 +87,43 @@ const vip1 = new VIPCustomer ("Eve", "atomeve@gmail.com", "Gold");
 vip1.addPurchase(150);
 vip1.addPurchase(55);
 vip1.getTotalSpent();
+
+
+// task 4: Build a Client Report System
+
+// create more customers
+
+const customer3 = new Customer ("kelly", "kelly@gmail.com");
+customer3.addPurchase(25);
+customer3.addPurchase(25);
+
+const vip2 = new VIPCustomer("amber", "amberr@gmail.com");
+vip2.addPurchase(600);
+vip2.addPurchase(150);
+
+const allCustomers = [customer1, customer2, vip1, vip2];  
+
+// calculate total revenue with .reduce
+console.log("total revenue:")
+const totalRevenue = allCustomers.reduce((total, customer) => total + customer.getTotalSpent(), 0);  
+
+console.log("high spending customers:")
+const highSpendingCustomers = allCustomers.filter(customer => {
+    const totalSpent = customer.getTotalSpent();
+    return totalSpent > 500;  // filter customers who spent over $500
+});
+// filter all customers that spent over $500
+
+// map summary of customer names and total
+console.log("customer summary:")
+const customerSummary = allCustomers.map(customer => {
+    return {
+      name: customer.name,
+      totalSpent: customer.getTotalSpent()
+    };
+  });
+
+
 
 
 

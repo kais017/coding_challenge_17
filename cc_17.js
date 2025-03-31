@@ -1,7 +1,7 @@
 // Task 1: Creating a customer class
 
 class Customer {
-    constructor(name, email, purchaseHistory) {
+    constructor(name, email) {
         this.name = name;
         this.email = email;
         this.purchaseHistory = [];
